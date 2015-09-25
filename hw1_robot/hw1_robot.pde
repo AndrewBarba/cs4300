@@ -1,6 +1,7 @@
 /**
  * Andrew Barba
  * Tablelist (https://www.tablelist.com) Robot
+ * Note: The object is my companies logo... not exactly a robot
  *
  * September 24, 2015
  * CS4300
@@ -9,6 +10,9 @@
  */
 
 import ddf.minim.*;
+import ddf.minim.signals.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
 
 // Window Constants
 int WINDOW_WIDTH = 980;
@@ -63,8 +67,8 @@ void draw() {
   drawBackground();
 
   // continuously draw our robot
-  lastX = lastX + ((mouseX - lastX) * 0.0005);
-  lastY = lastY + ((mouseY - lastY) * 0.0005);
+  lastX = lastX + ((mouseX - lastX) * 0.00025);
+  lastY = lastY + ((mouseY - lastY) * 0.00025);
   drawRobot(lastX, lastY);
 }
 
@@ -176,12 +180,17 @@ void drawBackground() {
 /******************************************************************************/
 
 void drawRobot(float x, float y) {
-
+  float time = time();
   float SCALE = 0.6;
 
   // start fills
   noStroke();
-  fillWhite();
+
+  if ((time >= 61 && time <= 77) || (time >= 123 && time <= 138) || (time >= 168 && time <= 200)) {
+    fill(abs(sin(time)) * random(255), abs(sin(time)) * random(255), abs(sin(time)) * random(255));
+  } else {
+    fillWhite();
+  }
 
   // offset x
   x = x - (300 * SCALE);
@@ -191,8 +200,33 @@ void drawRobot(float x, float y) {
   rect(x, y, 600 * SCALE, 102 * SCALE);
 
   // left leg
-  rect((100 * SCALE) + x, y + (30 * SCALE), 102 * SCALE, (260 * SCALE) - (30 * SCALE));
+  pushMatrix();
+  translate((100 * SCALE) + x, y + (50 * SCALE));
+  rotate(0.5 * sin(time * twerkSpeed(time)));
+  rect(0, 0, 102 * SCALE, (240 * SCALE) - (50 * SCALE));
+  popMatrix();
 
   // right leg
-  rect((390 * SCALE) + x, y + (30 * SCALE), 102 * SCALE, (260 * SCALE) - (30 * SCALE));
+  pushMatrix();
+  translate((390 * SCALE) + x, y + (50 * SCALE));
+  rotate(-0.5 * sin(time * twerkSpeed(time)));
+  rect(0, 0, 102 * SCALE, (240 * SCALE) - (50 * SCALE));
+  popMatrix();
+}
+
+float twerkSpeed(float time) {
+
+  if (time >= 15.0 && time <= 47) {
+    return 2.0;
+  }
+
+  if (time >= 77.0 && time <= 94) {
+    return 3.0;
+  }
+
+  if (time >= 168.0 && time <= 200) {
+    return 4.0;
+  }
+
+  return 1.0;
 }
