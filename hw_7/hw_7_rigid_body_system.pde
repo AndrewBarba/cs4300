@@ -5,7 +5,6 @@
  * This reference helped me understand the PVector class and how it is
  * used to create a realistic fall for each particle.
  *
- *
  * Andrew Barba
  * CS4300 - Assignment 7
  * --------------------------------------------------------------------------- */
