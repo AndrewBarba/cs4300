@@ -7,14 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B816A8D51BFA84B5008EDB23 /* ThreadedParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816A8D41BFA84B5008EDB23 /* ThreadedParticleSystem.swift */; };
+		B816A8D71BFA84BF008EDB23 /* ThreadedParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816A8D61BFA84BF008EDB23 /* ThreadedParticle.swift */; };
+		B816A8D91BFA8522008EDB23 /* Dispatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816A8D81BFA8522008EDB23 /* Dispatch.swift */; };
 		B8246A5A1BF9498600FCA596 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8246A591BF9498600FCA596 /* AppDelegate.swift */; };
 		B8246A5C1BF9498600FCA596 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8246A5B1BF9498600FCA596 /* ViewController.swift */; };
 		B8246A5F1BF9498600FCA596 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246A5D1BF9498600FCA596 /* Main.storyboard */; };
 		B8246A611BF9498600FCA596 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8246A601BF9498600FCA596 /* Assets.xcassets */; };
 		B8246A641BF9498600FCA596 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246A621BF9498600FCA596 /* LaunchScreen.storyboard */; };
+		B8246A731BF9545E00FCA596 /* BasicParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8246A721BF9545E00FCA596 /* BasicParticleSystem.swift */; };
+		B8246A751BF9547500FCA596 /* BasicParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8246A741BF9547500FCA596 /* BasicParticle.swift */; };
+		B8ACD8271BFC1464002A17E4 /* Kinematics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACD8261BFC1464002A17E4 /* Kinematics.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B816A8D41BFA84B5008EDB23 /* ThreadedParticleSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadedParticleSystem.swift; sourceTree = "<group>"; };
+		B816A8D61BFA84BF008EDB23 /* ThreadedParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreadedParticle.swift; sourceTree = "<group>"; };
+		B816A8D81BFA8522008EDB23 /* Dispatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispatch.swift; sourceTree = "<group>"; };
 		B8246A561BF9498600FCA596 /* Particles.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Particles.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8246A591BF9498600FCA596 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8246A5B1BF9498600FCA596 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +31,9 @@
 		B8246A601BF9498600FCA596 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B8246A631BF9498600FCA596 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8246A651BF9498600FCA596 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8246A721BF9545E00FCA596 /* BasicParticleSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicParticleSystem.swift; sourceTree = "<group>"; };
+		B8246A741BF9547500FCA596 /* BasicParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicParticle.swift; sourceTree = "<group>"; };
+		B8ACD8261BFC1464002A17E4 /* Kinematics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kinematics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +47,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B816A8D21BFA4FD0008EDB23 /* Basic Particle System */ = {
+			isa = PBXGroup;
+			children = (
+				B8246A721BF9545E00FCA596 /* BasicParticleSystem.swift */,
+				B8246A741BF9547500FCA596 /* BasicParticle.swift */,
+			);
+			name = "Basic Particle System";
+			sourceTree = "<group>";
+		};
+		B816A8D31BFA8498008EDB23 /* Threaded Particle System */ = {
+			isa = PBXGroup;
+			children = (
+				B816A8D41BFA84B5008EDB23 /* ThreadedParticleSystem.swift */,
+				B816A8D61BFA84BF008EDB23 /* ThreadedParticle.swift */,
+			);
+			name = "Threaded Particle System";
+			sourceTree = "<group>";
+		};
 		B8246A4D1BF9498600FCA596 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +96,7 @@
 			children = (
 				B8246A6F1BF94A0700FCA596 /* Delegate */,
 				B8246A701BF94A1100FCA596 /* Controllers */,
+				B8246A711BF9544500FCA596 /* Model */,
 				B8246A6E1BF949E300FCA596 /* Storyboards */,
 			);
 			name = Source;
@@ -100,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				B8246A591BF9498600FCA596 /* AppDelegate.swift */,
+				B816A8D81BFA8522008EDB23 /* Dispatch.swift */,
 			);
 			name = Delegate;
 			sourceTree = "<group>";
@@ -110,6 +142,16 @@
 				B8246A5B1BF9498600FCA596 /* ViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B8246A711BF9544500FCA596 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8ACD8261BFC1464002A17E4 /* Kinematics.swift */,
+				B816A8D21BFA4FD0008EDB23 /* Basic Particle System */,
+				B816A8D31BFA8498008EDB23 /* Threaded Particle System */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,8 +225,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B816A8D71BFA84BF008EDB23 /* ThreadedParticle.swift in Sources */,
+				B8246A731BF9545E00FCA596 /* BasicParticleSystem.swift in Sources */,
+				B8246A751BF9547500FCA596 /* BasicParticle.swift in Sources */,
+				B8ACD8271BFC1464002A17E4 /* Kinematics.swift in Sources */,
 				B8246A5C1BF9498600FCA596 /* ViewController.swift in Sources */,
 				B8246A5A1BF9498600FCA596 /* AppDelegate.swift in Sources */,
+				B816A8D51BFA84B5008EDB23 /* ThreadedParticleSystem.swift in Sources */,
+				B816A8D91BFA8522008EDB23 /* Dispatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +382,7 @@
 				B8246A6A1BF9498600FCA596 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
