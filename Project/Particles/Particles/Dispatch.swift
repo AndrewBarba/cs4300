@@ -69,7 +69,7 @@ public struct Dispatch {
     }
     
     public static func timerAsync(interval: Double, block: () -> ()) -> dispatch_source_t {
-        let queue = dispatch_queue_create("com.abarba.queue.timer.async", nil)
+        let queue = dispatch_queue_create("com.abarba.queue.timer.async", DISPATCH_QUEUE_SERIAL)
         return timer(interval, queue: queue, block: block)
     }
     

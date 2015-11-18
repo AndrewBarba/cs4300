@@ -43,7 +43,8 @@ struct ThreadedParticleSystem {
     }
     
     mutating func stop() {
-        dispatch_source_cancel(emitTimer!)
+        guard let timer = emitTimer else { return }
+        dispatch_source_cancel(timer)
         emitTimer = nil
     }
 }
@@ -62,14 +63,12 @@ extension ThreadedParticleSystem {
         let vx = CGFloat.random(-horizantleSpread, horizantleSpread)
         let vy = CGFloat.random(verticalSpread, verticalSpread * 2.0)
         
-        Dispatch.main {
-            ThreadedParticle(
-                view: self.view,
-                position: self.emitPoint,
-                velocity: CGVector(dx: vx, dy: vy),
-                acceleration: CGVector(dx: 0.0, dy: self.gravity.dy * mass),
-                size: self.particleSize
-            ).render()
-        }
+        ThreadedParticle(
+            view: self.view,
+            position: self.emitPoint,
+            velocity: CGVector(dx: vx, dy: vy),
+            acceleration: CGVector(dx: 0.0, dy: self.gravity.dy * mass),
+            size: self.particleSize
+        ).render()
     }
 }

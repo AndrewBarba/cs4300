@@ -5,6 +5,7 @@
  * --------------------------------------------------------------------------- */
 
 // Settings
+int PER_EMIT = 50;
 int WIDTH  = 750 / 2;
 int HEIGHT = 1334 / 2;
 int MAX_PARTICLES = 100000;
@@ -12,6 +13,8 @@ float GRAVITY = 0.15;
 
 // global system
 ParticleSystem globalParticleSystem;
+
+PFont f;
 
 /* ---------------------------------------------------------------------------
 /* Processing Setup
@@ -26,6 +29,9 @@ void setup() {
 
   // Start system
   globalParticleSystem = new ParticleSystem();
+
+  // Font
+  f = createFont("Arial",16,true);
 }
 
 void draw() {
@@ -33,7 +39,11 @@ void draw() {
   // white background
   background(255);
 
-  for (int i = 0; i < 400; i++) {
+  textFont(f,16);                  // STEP 3 Specify font to be used
+  fill(0);                         // STEP 4 Specify font color
+  text("Particles: " + globalParticleSystem.getParticles().size(), 10, 50);   // STEP 5 Display Text
+
+  for (int i = 0; i < PER_EMIT; i++) {
     globalParticleSystem.emitParticle();
   }
 
@@ -52,6 +62,10 @@ public class ParticleSystem {
   // Constructor
   ParticleSystem(){
      particles = new ArrayList();
+  }
+
+  ArrayList getParticles() {
+    return particles;
   }
 
   /**
