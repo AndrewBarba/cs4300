@@ -17,6 +17,7 @@
 		B8246A641BF9498600FCA596 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8246A621BF9498600FCA596 /* LaunchScreen.storyboard */; };
 		B8246A731BF9545E00FCA596 /* BasicParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8246A721BF9545E00FCA596 /* BasicParticleSystem.swift */; };
 		B8246A751BF9547500FCA596 /* BasicParticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8246A741BF9547500FCA596 /* BasicParticle.swift */; };
+		B86896DB1BFE14470082B281 /* CoreParticleSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86896DA1BFE14470082B281 /* CoreParticleSystem.swift */; };
 		B8ACD8271BFC1464002A17E4 /* Kinematics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ACD8261BFC1464002A17E4 /* Kinematics.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,7 @@
 		B8246A651BF9498600FCA596 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8246A721BF9545E00FCA596 /* BasicParticleSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicParticleSystem.swift; sourceTree = "<group>"; };
 		B8246A741BF9547500FCA596 /* BasicParticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicParticle.swift; sourceTree = "<group>"; };
+		B86896DA1BFE14470082B281 /* CoreParticleSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreParticleSystem.swift; sourceTree = "<group>"; };
 		B8ACD8261BFC1464002A17E4 /* Kinematics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Kinematics.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -150,8 +152,17 @@
 				B8ACD8261BFC1464002A17E4 /* Kinematics.swift */,
 				B816A8D21BFA4FD0008EDB23 /* Basic Particle System */,
 				B816A8D31BFA8498008EDB23 /* Threaded Particle System */,
+				B86896D91BFE14220082B281 /* Core Particle System */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B86896D91BFE14220082B281 /* Core Particle System */ = {
+			isa = PBXGroup;
+			children = (
+				B86896DA1BFE14470082B281 /* CoreParticleSystem.swift */,
+			);
+			name = "Core Particle System";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +242,7 @@
 				B8ACD8271BFC1464002A17E4 /* Kinematics.swift in Sources */,
 				B8246A5C1BF9498600FCA596 /* ViewController.swift in Sources */,
 				B8246A5A1BF9498600FCA596 /* AppDelegate.swift in Sources */,
+				B86896DB1BFE14470082B281 /* CoreParticleSystem.swift in Sources */,
 				B816A8D51BFA84B5008EDB23 /* ThreadedParticleSystem.swift in Sources */,
 				B816A8D91BFA8522008EDB23 /* Dispatch.swift in Sources */,
 			);
