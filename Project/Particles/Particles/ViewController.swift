@@ -12,15 +12,15 @@ import UIKit
 class ViewController: UIViewController {
     
 //    var particleSystem: BasicParticleSystem!
-//    var particleSystem: ThreadedParticleSystem!
-    var particleSystem: CoreParticleSystem!
+    var particleSystem: ThreadedParticleSystem!
+//    var particleSystem: CoreParticleSystem!
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
 //        particleSystem = BasicParticleSystem(view: view)
-//        particleSystem = ThreadedParticleSystem(view: view)
-        particleSystem = CoreParticleSystem(view: view)
+        particleSystem = ThreadedParticleSystem(view: view)
+//        particleSystem = CoreParticleSystem(view: view)
         
         particleSystem.particleSize = 4.0
         particleSystem.emitRate = 1.0 / 60.0
