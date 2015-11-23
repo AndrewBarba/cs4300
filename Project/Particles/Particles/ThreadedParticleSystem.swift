@@ -18,7 +18,7 @@ struct ThreadedParticleSystem {
     var verticalSpread: CGFloat = 140.0
     var massSpread: CGFloat = 15.0
     var particlesPerEmit: Int = 1
-    var gravity = CGVector(dx: 0.0, dy: -14.8)
+    var gravity = CGVector(dx: 0.0, dy: -20.0)
     
     // View to render particles
     private let view: UIView

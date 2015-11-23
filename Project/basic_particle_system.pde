@@ -5,7 +5,7 @@
  * --------------------------------------------------------------------------- */
 
 // Settings
-int PER_EMIT = 50;
+int PER_EMIT = 10;
 int WIDTH  = 750 / 2;
 int HEIGHT = 1334 / 2;
 int MAX_PARTICLES = 100000;
