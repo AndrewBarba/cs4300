@@ -1,0 +1,156 @@
+/*************************************************************
+
+  Question 6
+
+  Note:
+
+  I completed all pieces of the assignment in this one file.
+
+  I used the 01_base.cgfx as a starting point and left in the
+  original comments so you know what is their code and what is
+  mine. All of my comments will be prefixed with `abarba`.
+
+  I chose to implement one piece, run it in Maya and take
+  screenshots, then comment it out and continue onto the
+  next piece. All of the code is here but some of it is
+  commented out. You can see the reference images in the
+  results folder.
+
+**************************************************************/
+
+//////////////////////////////////////////////////////////////
+// CGFX Matrices Section
+float4x4 WorldViewProjection   : WorldViewProjection   < string UIWidget = "None"; >;
+float4x4 WorldInverseTranspose : WorldInverseTranspose < string UIWidget = "None"; >;
+float4x4 ViewInverse           : ViewInverse           < string UIWidget = "None"; >;
+float4x4 World                 : World                 < string UIWidget = "None"; >;
+
+// Maya Description
+string description = "Andrew Barba CS4300 Fall 2015";
+
+//////////////////////////////////////////////////////////////
+// Parameters section
+
+float3 shaderColor : Diffuse
+<
+	string UIName = "Shader Color";
+> = {1.0f, 1.0f, 1.0f};
+
+float3 lightDirection : Direction
+<
+	string UIName = "Light Direction";
+> = {0.0f, 1.0f, 0.0f};
+
+// abarba - A. Ambient component
+float3 ambientColor : Diffuse
+<
+	string UIName = "Ambient Color";
+> = {0.15f, 0.15f, 0.15f};
+
+// abarba - B. Specular component
+float specularPower
+<
+	string UIWidget = "slider";
+	string UIName = "Specular Power";
+	float UIMin = 0.1f;
+	float UIMax = 100.0f;
+	float UIStep = 0.01f;
+> = 30.0f;
+
+float3 specularColor : Diffuse
+<
+	string UIName = "Specular Color";
+> = {1.0f, 1.0f, 1.0f};
+
+// abarba - D. Fresenal effect
+float fresnelPower
+<
+	string UIWidget = "slider";
+	string UIName = "Fresnel Power";
+	float UIMin = 0.0f;
+	float UIMax = 10.0f;
+	float UIStep = 0.01f;
+> = 3.0f;
+
+// abarba - E. Color
+float3 colorEffect : Diffuse
+<
+	string UIName = "Color Effect";
+> = {0.45f, 0.85f, 0.15f};
+
+//////////////////////////////////////////////////////////////
+// Structs section
+// input from application
+struct a2v {
+	float4 position: POSITION;
+	float4 normal: NORMAL;
+};
+
+// output to fragment program
+struct v2f {
+  float4 position: POSITION;
+	float3 worldNormal: TEXCOORD0;
+  float3 eyeVector: TEXCOORD1;
+};
+
+
+
+//////////////////////////////////////////////////////////////
+// Vertex Shader
+v2f vShader(a2v In)
+{
+  v2f Out;
+  Out.position = mul(WorldViewProjection, In.position);
+	Out.worldNormal = mul(WorldInverseTranspose, In.normal).xyz;
+
+  float3 worldSpacePos = mul(World, In.position);
+	float3 worldCameraPos = float3(ViewInverse[0].w, ViewInverse[1].w, ViewInverse[2].w);
+  Out.eyeVector = worldCameraPos - worldSpacePos;
+
+  return Out;
+}
+
+//////////////////////////////////////////////////////////////
+// Pixel Shader
+float4 pShader(v2f In) : COLOR
+{
+	float4 outColor;
+
+	float3 worldNormal = normalize(In.worldNormal);
+	float3 lightDir = normalize(-lightDirection);
+	float3 lambert = saturate(dot(lightDir, worldNormal));
+  float3 eyeVector = normalize(In.eyeVector);
+
+  // A. Ambient Component
+	// outColor.rgb = (lambert + ambientColor) * shaderColor;
+
+  // B. Specular Component
+  // float3 reflectionVector = - reflect(eyeVector, worldNormal);
+  // float3 specular = pow(saturate(dot(reflectionVector, lightDir)), specularPower) * specularColor;
+  // outColor.rgb = lambert * shaderColor + specular;
+
+  // C. Diffuse Component
+
+  // D. Fresnel Effect
+  // float3 fresnel = pow(1- saturate(dot(eyeVector, worldNormal)), fresnelPower) * lambert;
+	// outColor.rgb = (lambert + ambientColor) * shaderColor + fresnel;
+
+  // E. Color Effect
+  float3 fresnel = pow(1- saturate(dot(eyeVector, worldNormal)), fresnelPower) * (lambert + colorEffect);
+	outColor.rgb = (lambert + ambientColor) * shaderColor + fresnel;
+
+  outColor.a = 1.0f;
+
+	return outColor;
+}
+
+//////////////////////////////////////////////////////////////
+// Techniques
+technique Simple
+{
+  pass one
+  {
+		VertexShader = compile vp30 vShader();
+		PixelShader = compile fp30 pShader();
+  }
+}

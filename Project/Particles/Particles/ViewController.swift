@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         particleSystem = CoreParticleSystem(view: view)
         
         particleSystem.particleSize = 4.0
-        particleSystem.emitRate = 1.0 / 120.0
-        particleSystem.particlesPerEmit = 100
+        particleSystem.emitRate = 1.0 / 60.0
+        particleSystem.particlesPerEmit = 10
         particleSystem.emitPoint = CGPointMake(
             CGRectGetMidX(view.bounds),
             CGRectGetMidY(view.bounds)
