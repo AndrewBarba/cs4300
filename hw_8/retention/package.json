@@ -1,0 +1,11 @@
+{
+  "name": "retention",
+  "description": "Retention library for Node.js and MongoDB",
+  "engines": {
+    "node": "4.2.2"
+  },
+  "dependencies": {
+    "async": "1.5.0",
+    "moment": "2.10.6"
+  }
+}
