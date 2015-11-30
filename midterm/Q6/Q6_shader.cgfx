@@ -130,14 +130,15 @@ float4 pShader(v2f In) : COLOR
   // outColor.rgb = lambert * shaderColor + specular;
 
   // C. Diffuse Component
+  outColor.rgb = lambert * shaderColor;
 
   // D. Fresnel Effect
   // float3 fresnel = pow(1- saturate(dot(eyeVector, worldNormal)), fresnelPower) * lambert;
 	// outColor.rgb = (lambert + ambientColor) * shaderColor + fresnel;
 
   // E. Color Effect
-  float3 fresnel = pow(1- saturate(dot(eyeVector, worldNormal)), fresnelPower) * (lambert + colorEffect);
-	outColor.rgb = (lambert + ambientColor) * shaderColor + fresnel;
+  // float3 fresnel = pow(1- saturate(dot(eyeVector, worldNormal)), fresnelPower) * (lambert + colorEffect);
+	// outColor.rgb = (lambert + ambientColor) * shaderColor + fresnel;
 
   outColor.a = 1.0f;
 
