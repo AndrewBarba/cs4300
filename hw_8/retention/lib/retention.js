@@ -12,17 +12,17 @@ const async = require('async');
 const dateUtils = require('./date-utils');
 
 const DATE_FUNCTIONS = {
-  'day'  : [ dateUtils.diaryDate, dateUtils.tomorrow ],
-  'week' : [ dateUtils.diaryWeek, dateUtils.nextWeek ],
-  'month': [ dateUtils.diaryMonth, dateUtils.nextMonth ],
-  'year' : [ dateUtils.diaryYear, dateUtils.nextYear ],
+    day: [ dateUtils.diaryDate, dateUtils.tomorrow ],
+   week: [ dateUtils.diaryWeek, dateUtils.nextWeek ],
+  month: [ dateUtils.diaryMonth, dateUtils.nextMonth ],
+   year: [ dateUtils.diaryYear, dateUtils.nextYear ]
 };
 
 /*============================================================================*
  * Service                                                                    *
  *============================================================================*/
 
-function Retention(period, sections, init, then){
+function Retention(period, sections, init, then) {
 	this.data = {};
 	this.sections = sections;
 	this.period = period;
