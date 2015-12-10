@@ -76,9 +76,9 @@ extension ThreadedParticle {
         animation.removedOnCompletion = false
         animation.values = values
         layer.addAnimation(animation, forKey: "position")
-        
-        Dispatch.main(addLayer)
-        Dispatch.async(queue, time: duration, block: die)
+
+        Dispatch.main(block: addLayer)
+        Dispatch.async(queue, delay: duration, block: die)
     }
     
     func die() {

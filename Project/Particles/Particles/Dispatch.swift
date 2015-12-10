@@ -10,56 +10,22 @@ import Foundation
 
 public struct Dispatch {
     
+    public static func queue(label: String = "com.abarba.queue.async", _ attr: dispatch_queue_attr_t = DISPATCH_QUEUE_SERIAL) -> dispatch_queue_t {
+        return dispatch_queue_create(label, attr)
+    }
+    
     // MARK: - Async
-    
-    /**
-        Asynchronously dispatch a block on a background thread
-    */
-    public static func async(block: ()->()) {
-        let queue = dispatch_queue_create("com.abarba.queue.async", nil)
-        async(queue, block: block)
-    }
-    
-    public static func async(queue: dispatch_queue_t, block: ()->()) {
-        dispatch_async(queue, block)
-    }
-    
-    /**
-        Asynchronously dispatch a block on a background thread after a specified number of seconds
-    */
-    public static func async(queue: dispatch_queue_t, time: Double, block: ()->()) {
-        let after = dispatch_time(DISPATCH_TIME_NOW, Int64(time * Double(NSEC_PER_SEC)))
+
+    public static func async(queue: dispatch_queue_t = Dispatch.queue(), delay: Double = 0.0, block: ()->()) {
+        let after = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)))
         dispatch_after(after, queue, block)
-    }
-    
-    public static func async(time: Double, block: ()->()) {
-        let queue = dispatch_queue_create("com.abarba.queue.async.after", nil)
-        async(queue, time: time, block: block)
-    }
-    
-    // MARK: - Main
-    
-    /**
-        Asynchronously dispatch a block on the main thread
-    */
-    public static func main(block: ()->()) {
-        async(dispatch_get_main_queue(), block: block)
     }
     
     /**
         Asynchronously dispatch a block on the main thread after a specified number of seconds
     */
-    public static func main(time: Double, block: ()->()) {
-        async(dispatch_get_main_queue(), time: time, block: block)
-    }
-    
-    // MARK: - Synchronized
-    
-    /**
-        Swift function for ObjC @synchronized
-    */
-    public static func sync(queue: dispatch_queue_t, block: () -> ()) {
-        dispatch_sync(queue, block)
+    public static func main(delay delay: Double = 0.0, block: ()->()) {
+        async(dispatch_get_main_queue(), delay: delay, block: block)
     }
     
     // MARK: - Timer
@@ -75,14 +41,17 @@ public struct Dispatch {
     
     public static func timer(interval: Double, queue: dispatch_queue_t, block: () -> ()) -> dispatch_source_t {
         let timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
-        dispatch_source_set_timer(
-            timer,
-            dispatch_time(DISPATCH_TIME_NOW, Int64(interval * Double(NSEC_PER_SEC))),
-            UInt64(interval * Double(NSEC_PER_SEC)),
-            10
-        );
+        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, UInt64(interval * Double(NSEC_PER_SEC)), 10);
         dispatch_source_set_event_handler(timer, block);
         dispatch_resume(timer);
         return timer;
+    }
+}
+
+public extension dispatch_source_t {
+    
+    public func invalidate() -> Self {
+        dispatch_source_cancel(self)
+        return self
     }
 }
