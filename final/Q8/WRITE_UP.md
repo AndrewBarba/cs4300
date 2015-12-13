@@ -1,0 +1,5 @@
+For my visualization I wrote code which can calculate retention based on any data set, as long as you provide a function that can calculate and initial set of unique values for a given time period and then another function which can also provide a unique set of values for a given date range. Specifically I wanted to look at work similarity throughout the set of tweets and see if the context of the of the tweets was changing over time.
+
+In my visualization you can see the first two columns represent the number of unique words tweeted out on a given date. Then, all subsequent columns looks to show the percentage of words used 1 day later, 2 days later, 3 days etc. that were similar to the initial data set.
+
+In the excel file I computed the average similarity for column. The averages that show that an any given date after the original date, you can expect about 25% of the tweets to be similar in nature. Interestingly, the words that are most similar are actually profanity, mailny things like "bitch" and other words of that nature.
