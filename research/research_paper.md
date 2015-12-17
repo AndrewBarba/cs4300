@@ -23,7 +23,41 @@ One limitation of iOS that even exists today, is all UI behavior must be specifi
 
 ## Methods
 
+
+
 ## Results
+
+Using Core Animation effectively can dramatically enhance the end user experience. Animation is a way to guide the human eye to a result, making the overall experience more fluid and lifelike. User's may not always appreciate good animation outright, but subconsciously you can persuade a user to take certain actions within an application by guiding them in the right direction. The examples above show specifically how to animate a single view, or a group of views, but something to also keep in mind is *timing*.
+
+Let's define a function that allows us to easily dispatch a block of code after a specified number of seconds:
+
+```
+public static func delay(seconds: Double, block: () -> ())
+```
+
+This will be a global function that takes in two arguments: the number of seconds that you want to delay execution, and the block of code (or closure) that you want to be run. To keep the example simple and Core Animation friendly, this function will dispatch the given block onto the main thread.
+
+Implementing this function brings us to an important counterpart of Core Animation, Grand Central Dispatch (GCD). GCD is an open source Apple technology that concurrent code dramatically easier to write, but more importantly, dramatically easier to reason about. I wanted to do something a bit original for this project, so I actually made a YouTube tutorial specifically about Grand Central Dispatch. 4 years ago I made an iOS tutorial and then never made one again. Turns out that video had over 30,000 views and I figured this was a good opportunity to make another one. The video can be watched here: [Threading and Concurrency with Grand Central Dispatch and Swift 2.0](https://www.youtube.com/watch?v=EZGVxQ1oRTI)
+
+The finished implementation of this function, also discussed in the tutorial in more detail, is the following:
+
+```
+public static func delay(seconds: Double, block: () -> ()) {
+  let nanoSeconds = Int64(seconds * Double(NSEC_PER_SEC))
+  let delay = dispatch_time(DISPATCH_TIME_NOW, nanoSeconds)
+  dispatch_after(delay, dispatch_get_main_queue(), block)
+}
+```
+
+Now that we have a function that can control when we dispatch code at an extremely precise time interval, we can begin to tweak our animations even further. A popular function that you override in iOS development is the `viewDidLoad` method that fires when a view is initialized and is about to come on screen. This is a great time to begin animations because now you are guaranteed that your views are front facing to the user. The problem with just starting an animation in this method is the view is not actually on screen yet, it is being animated on screen with either a fade or some modal transition. What you really want to do is delay the animation by a fraction of a second to give the view time to settle. We can do this quite easily:
+
+```
+delay(0.3) {
+  UIView.animateWithDuration(0.3) { ... }
+}
+```
+
+Timing is key to animation and Grand Central Dispatch gives a programmer precise control over timing.
 
 ## Discussion
 
