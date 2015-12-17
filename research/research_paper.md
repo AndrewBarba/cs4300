@@ -29,3 +29,12 @@ One limitation of iOS that even exists today, is all UI behavior must be specifi
 ## Discussion
 
 ## References  
+
+#### About Core Animation
+[https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html)
+
+#### Core Animation with Marin Todorov
+[http://www.raywenderlich.com/95785/core-animation-with-marin-todorov-podcast-s03-e05](http://www.raywenderlich.com/95785/core-animation-with-marin-todorov-podcast-s03-e05)
+
+#### Dr. Brad Larson on Core Animation and OpenGL ES 2.0
+[https://itunes.apple.com/us/itunes-u/advanced-iphone-development/id407243028?mt=10](https://itunes.apple.com/us/itunes-u/advanced-iphone-development/id407243028?mt=10)
