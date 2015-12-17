@@ -1,4 +1,3 @@
-
 How-To Efficiently Animate with Core Animation
 ==============================================
 
@@ -28,7 +27,9 @@ One limitation of iOS that even exists today, is all UI behavior must be specifi
 
 ## Discussion
 
-## References  
+Today Core Animation has become such a core piece of the system that many iOS and OS X developers, particular newer ones, are using Core Animation without even knowing it. From compositing, to top level `UIView` methods, to scrolling a basic list, each one at some point in the stack touches the Core Animation rendering layer. Core Animation was originally developed on top of Objective-C and today the default language for iOS and OS X development is Swift. Swift took a very modern, safe approach to programming. With things like optional, closures and generics, the language has very different constructs and paradigms than Objective-C. It will be interesting to see how Core Animation progresses under the Swift language, and whether or not it will adopt more Swift like syntax and paradigms.
+
+## References
 
 #### About Core Animation
 [https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/CoreAnimation_guide/Introduction/Introduction.html)
