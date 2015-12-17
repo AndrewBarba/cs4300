@@ -101,6 +101,8 @@ UIView.animateWithDuration(2.0, animation: {
 }
 ```
 
+These couple functions just scratch the surface of what is possible in Core Animation. Image compositing, video encoding and decoding, and even animations based on the accelerometer and gyroscope of the device are all posssible with more advanced Core Animation frameworks.
+
 ## Results
 
 Using Core Animation effectively can dramatically enhance the end user experience. Animation is a way to guide the human eye to a result, making the overall experience more fluid and lifelike. User's may not always appreciate good animation outright, but subconsciously you can persuade a user to take certain actions within an application by guiding them in the right direction. The examples above show specifically how to animate a single view, or a group of views, but something to also keep in mind is *timing*.
