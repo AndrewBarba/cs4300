@@ -23,7 +23,83 @@ One limitation of iOS that even exists today, is all UI behavior must be specifi
 
 ## Methods
 
+Let's start with basic view and add it to the screen:
 
+```
+// Initialize a view
+let view = UIView(frame: CGRectMake(0, 0, 100.0, 100.0))
+view.backgroundColor = UIColor.blueColor()
+
+// Add the view to the window
+self.window.addSubview(view)
+```
+
+The above block of code should give us a blue square in the top left corner of the screen. Now we want to use Core Animation to animate the view to the top right corner of the screen. In it's most basic form:
+
+```
+UIView.animateWithDuration(2.0) {
+  let frame = view.frame
+  frame.origin.x = window.frame.size.width - frame.size.width
+  view.frame = frame
+}
+```
+
+That's all there's to it. This view will now animate the to the top right corner in exactly and it will take exactly 2.0 seconds to do so. Now you might be wondering if this animation happens linearly, and the answer is no. By default iOS applies an ease-in-out bezier curve to the animation to give it a more gradual feel. This function alone allows us to accomplish a huge number of animations with little to no work. The magic here is the fact that we are simply specifying where we want the view to end up, and Core Animation is behind the scenes figuring out all the different locations this view will be on background threads. It then passes off the path of the view to GPU and magically provides a buttery smooth animation. Now let's move the view and make it rotate:
+
+```
+UIView.animateWithDuration(2.0) {
+
+  // move view to top right corner
+  let frame = view.frame
+  frame.origin.x = window.frame.size.width - frame.size.width
+  view.frame = frame
+
+  // rotate 360 degrees
+  view.affineTransform = CGAffineTransformMakeRotation(M_PI)
+}
+```
+
+Event though two transformations were specified, Core Animation is smart enough to figure out what the view will look like at each frame with both applied simultaneously. Perhaps you don't want both animations to be applied simultaneously, Core Animation makes that easy too:
+
+```
+UIView.animateWithDuration(2.0, animation: {
+
+  // move view to top right corner
+  let frame = view.frame
+  frame.origin.x = window.frame.size.width - frame.size.width
+  view.frame = frame
+
+}, completion: { _ in
+
+  UIView.animateWithDuration(1.0) {
+    // rotate 360 degrees
+    view.affineTransform = CGAffineTransformMakeRotation(M_PI)
+  }
+}
+```
+
+Core Animation provides many options on top of the default `animateWithDuration` method. One of them is the option to specify a completion handler so we can run a block of code when the animation is complete. You'll notice the strange `_ in` in the handler, this is because I actually hid a variable which is a boolean and tells you whether the animation was able to fully animate the entire transformation or if it was cut off for some reason. Depending on whether or not th animation was stopped, perhaps the user dismissed the current view, you may want to take different action. For example:
+
+```
+UIView.animateWithDuration(2.0, animation: {
+
+  // move view to top right corner
+  let frame = view.frame
+  frame.origin.x = window.frame.size.width - frame.size.width
+  view.frame = frame
+
+}, completion: { completedAnimation in
+
+  // make sure we completed the animation before continuing
+  // otherwise just stop here
+  guard completedAnimation else { return }
+
+  UIView.animateWithDuration(1.0) {
+    // rotate 360 degrees
+    view.affineTransform = CGAffineTransformMakeRotation(M_PI)
+  }
+}
+```
 
 ## Results
 
